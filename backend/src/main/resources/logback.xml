@@ -1,0 +1,37 @@
+<configuration>
+
+    <jmxConfigurator/>
+
+    <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+        <resetJUL>true</resetJUL>
+    </contextListener>
+
+    <!-- definition of appender STDOUT -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern><![CDATA[[%-5level] (%file:%line\) [%logger{36}] %n%msg%n--------------------------------------------------------------%n]]></pattern>
+        </encoder>
+    </appender>
+
+    <!-- Filter out incoming TCP connection messages.
+         F5 polls applications by just opening and closing a TCP connection to the server, so filtering here saves us
+         A LOT of log space. -->
+    <logger name="akka.io.TcpListener" level="INFO" additivity="false" />
+
+    <!-- Enable debugging here to see interface bind/bound messages from spray-can. -->
+    <logger name="spray.can.server" level="INFO" additivity="false" />
+
+    <!-- Enable debugging here to see spray-client connection pool management messages. -->
+    <logger name="spray.can.client" level="INFO" additivity="false" />
+
+    <!-- Enable debugging here to see TCP outgoing connection messages. -->
+    <logger name="akka.io.TcpOutgoingConnection" level="INFO" additivity="false" />
+
+    <!-- We don't need detailed logging from EhCache. -->
+    <logger name="net.sf.ehcache" level="INFO" additivity="false" />
+
+    <root level="trace">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>

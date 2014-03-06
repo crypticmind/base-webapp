@@ -18,8 +18,8 @@ object Build extends Build {
     .settings(revolverSettings: _*)
     .settings(
       libraryDependencies ++=
-        compile(akkaActor, akkaSlf4j, sprayCan, sprayRouting, sprayJson, slick, c3p0, h2Driver, scalaReflect, slf4japi, logback) ++
-        test(scalatest, akkaTestKit, slick, c3p0, h2Driver, slf4japi, logback) ++
+        compile(akkaActor, akkaSlf4j, sprayCan, sprayRouting, sprayJson, mapperdao, c3p0, h2Driver, scalaReflect, slf4japi, logback) ++
+        test(scalatest, akkaTestKit, mapperdao, c3p0, h2Driver, slf4japi, logback) ++
         runtime(h2Driver)
     )
 
