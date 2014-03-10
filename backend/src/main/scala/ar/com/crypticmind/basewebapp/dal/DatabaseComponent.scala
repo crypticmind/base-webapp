@@ -13,23 +13,9 @@ import scala.util._
 
 trait DatabaseComponent { this: SettingsComponent =>
 
-  case class Version(major: Int, minor: Int, revision: Int) {
-    override def toString = s"$major.$minor.$revision"
-  }
-  object Version {
-    def apply(versionString: String): Version = versionString split "\\." match {
-      case Array(major, minor, revision) => Version(major.toInt, minor.toInt, revision.toInt)
-      case Array(major, minor) => Version(major.toInt, minor.toInt, 0)
-      case Array(major) => Version(major.toInt, 0, 0)
-    }
-  }
-
-  case class DbVersion(version: Version, date: DateTime, message: String)
-  object DbVersion {
-    def apply(version: String, date: DateTime, message: String): DbVersion = DbVersion(Version(version), date, message)
-  }
-
   object database {
+
+    import DatabaseComponent._
 
     object DbVersionEntity extends Entity[String, NaturalStringId, DbVersion]("db_version") {
       val version   = key("version") to (_.version.toString)
@@ -59,7 +45,7 @@ trait DatabaseComponent { this: SettingsComponent =>
       case Some(Some(cachedVersion)) => Some(cachedVersion)
       case _ =>
         val freshCurrentVersion =
-          queryDao.lowLevelQuery(
+          queryDao.lowLevelQuery(   // mapperdao doesn't support aggregate functions yet
             DbVersionEntity,
             "SELECT * FROM db_version dbv WHERE dbv.log_date = SELECT max(log_date) FROM db_version",
             Nil).headOption
@@ -78,6 +64,33 @@ trait DatabaseComponent { this: SettingsComponent =>
         throw new IllegalStateException("Database is not setup (error occurred)", exception)
     }
 
+  }
+
+}
+
+object DatabaseComponent {
+
+  case class Version(major: Int, minor: Int, revision: Int) extends Ordered[Version] {
+    override def toString = s"$major.$minor.$revision"
+    def compare(that: Version) = {
+      val majorC = major.compareTo(that.major)
+      val minorC = minor.compareTo(that.minor)
+      val revisionC = revision.compareTo(that.revision)
+      if (majorC != 0) majorC else if (minorC != 0) minorC else revisionC
+    }
+  }
+  object Version {
+    def apply(versionString: String): Version = versionString split "\\." match {
+      case Array(major, minor, revision) => Version(major.toInt, minor.toInt, revision.toInt)
+      case Array(major, minor) => Version(major.toInt, minor.toInt, 0)
+      case Array(major) => Version(major.toInt, 0, 0)
+      case x => throw new IllegalArgumentException(s"Unrecognized version value $x")
+    }
+  }
+
+  case class DbVersion(version: Version, date: DateTime, message: String)
+  object DbVersion {
+    def apply(version: String, date: DateTime, message: String): DbVersion = DbVersion(Version(version), date, message)
   }
 
 }
