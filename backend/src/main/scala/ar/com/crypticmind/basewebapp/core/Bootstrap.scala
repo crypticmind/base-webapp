@@ -2,8 +2,9 @@ package ar.com.crypticmind.basewebapp.core
 
 import akka.actor.{ Props, ActorSystem }
 import ar.com.crypticmind.basewebapp.httpserver.{ ServerManager, ServiceActor }
-import ar.com.crypticmind.basewebapp.httpserver.routes.UserRoutes
+import ar.com.crypticmind.basewebapp.httpserver.routes.{ServiceStateRoutes, UserRoutes}
 import ar.com.crypticmind.basewebapp.dal.DatabaseComponent
+
 
 trait Bootstrap {
 
@@ -12,7 +13,13 @@ trait Bootstrap {
   val settings = ServiceSettings(system)
 
   // The service actor that will dispatch incoming requests.
-  private class WiredService extends ServiceActor with SettingsComponent with DatabaseComponent with Core with UserRoutes {
+  private class WiredService
+    extends ServiceActor
+    with SettingsComponent
+    with DatabaseComponent
+    with Core
+    with UserRoutes
+    with ServiceStateRoutes {
     val settings = Bootstrap.this.settings
   }
 

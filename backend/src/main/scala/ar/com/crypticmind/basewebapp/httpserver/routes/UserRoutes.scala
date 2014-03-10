@@ -14,7 +14,7 @@ trait UserRoutes extends RouteContainer { this: UserServiceComponent ⇒
   import spray.httpx.SprayJsonSupport._
   import spray.json.DefaultJsonProtocol._
 
-  val log = LoggerFactory.getLogger(this.getClass)
+  private val log = LoggerFactory.getLogger(this.getClass)
 
   implicit val userDtoJsonFormat = jsonFormat1(UserDto)
 
