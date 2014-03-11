@@ -1,15 +1,8 @@
 package ar.com.crypticmind.basewebapp.integration
 
 import ar.com.crypticmind.basewebapp.model.User
-import ar.com.crypticmind.basewebapp.testsupport.TestCore
 
-class UserCrudTest extends TestCore {
-
-  import core._
-
-  override def afterAll() {
-    super.afterAll()
-  }
+class UserCrudTest extends IntegrationTest {
 
   "The User CRUD" should {
 
