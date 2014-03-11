@@ -6,14 +6,13 @@ import ar.com.crypticmind.basewebapp.httpserver.RouteContainer
 import scala.util._
 import org.slf4j.LoggerFactory
 
-
 trait ServiceStateRoutes extends RouteContainer { this: DatabaseComponent ⇒
 
   private val log = LoggerFactory.getLogger(this.getClass)
 
   def databaseOperative: Boolean = Try(database.checkDatabaseVersion()) match {
-    case Success(_) => true
-    case Failure(exception) => log.error("Database non-operative", exception); false
+    case Success(_)         ⇒ true
+    case Failure(exception) ⇒ log.error("Database non-operative", exception); false
   }
 
   abstract override def route: Route =

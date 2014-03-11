@@ -2,7 +2,6 @@ package ar.com.crypticmind.basewebapp.dal
 
 import ar.com.crypticmind.basewebapp.model.User
 
-
 trait UserRepositoryComponent { this: DatabaseComponent ⇒
 
   val userRepository: UserRepository
@@ -20,10 +19,10 @@ trait UserRepositoryComponent { this: DatabaseComponent ⇒
       import com.googlecode.mapperdao.Update._
       val u = database.UserEntity
       user.id match {
-        case 0 =>
+        case 0 ⇒
           database.mapperDao.insert(u, user)
-        case id =>
-          (update(u) set (u.username === user.username) where(u.id === id)).run(database.queryDao)
+        case id ⇒
+          (update(u) set (u.username === user.username) where (u.id === id)).run(database.queryDao)
           user
       }
     }
@@ -31,7 +30,7 @@ trait UserRepositoryComponent { this: DatabaseComponent ⇒
     def remove(user: User) {
       import com.googlecode.mapperdao.Delete._
       val u = database.UserEntity
-      (delete from u where(u.id === user.id)).run(database.queryDao)
+      (delete from u where (u.id === user.id)).run(database.queryDao)
     }
 
     def getAllUsers: List[User] = {

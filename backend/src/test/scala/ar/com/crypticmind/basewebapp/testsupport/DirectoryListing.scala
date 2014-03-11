@@ -1,18 +1,18 @@
-package ar.com.crypticmind.basewebapp.misc
+package ar.com.crypticmind.basewebapp.testsupport
 
 import java.io.File
 import java.util.jar.JarFile
 import java.net.URLDecoder
 
-
 object DirectoryListing {
 
   import scala.collection.JavaConversions._
 
+  // Stolen from http://www.uofr.net/~greg/java/get-resource-listing.html
   def listResources(path: String): List[String] = {
     Option(getClass.getClassLoader.getResource(path)) match {
-      case Some(dirURL) if dirURL.getProtocol == "file" => new File(dirURL.toURI).list().toList
-      case None =>
+      case Some(dirURL) if dirURL.getProtocol == "file" ⇒ new File(dirURL.toURI).list().toList
+      case None ⇒
         val me = getClass.getName.replace(".", "/") + ".class"
         val dirURL = getClass.getClassLoader.getResource(me)
         if (dirURL.getProtocol == "jar") {

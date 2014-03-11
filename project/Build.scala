@@ -16,10 +16,11 @@ object Build extends Build {
     .settings(formatSettings: _*)
     .settings(backendSettings: _*)
     .settings(revolverSettings: _*)
+    .settings(testSettings: _*)
     .settings(
       libraryDependencies ++=
-        compile(akkaActor, akkaSlf4j, sprayCan, sprayRouting, sprayJson, mapperdao, c3p0, h2Driver, scalaReflect, slf4japi, logback) ++
-        test(scalatest, akkaTestKit, mapperdao, c3p0, h2Driver, slf4japi, logback) ++
+        compile(akkaActor, akkaSlf4j, sprayCan, sprayRouting, sprayJson, mapperdao, c3p0, h2Driver, scalaReflect, slf4japi, logback, commons_lang) ++
+        test(scalatest, akkaTestKit, mapperdao, c3p0, h2Driver, slf4japi, logback, ant, commons_io, commons_lang) ++
         runtime(h2Driver)
     )
 

@@ -3,7 +3,6 @@ package ar.com.crypticmind.basewebapp.core
 import spray.util.SettingsCompanion
 import com.typesafe.config.Config
 
-
 case class ServiceSettings(interface: String,
                            port: Int,
                            dbDialect: String,
