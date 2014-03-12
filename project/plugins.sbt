@@ -12,3 +12,4 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-site" % "0.7.1")
 
 addSbtPlugin("com.typesafe.sbt" % "sbt-scalariform" % "1.2.1")
 
+addSbtPlugin("com.banno" % "sbt-license-plugin" % "0.0.2" from "http://cloud.github.com/downloads/T8Webware/sbt-license-plugin/sbt-license-plugin-0.0.2.jar")

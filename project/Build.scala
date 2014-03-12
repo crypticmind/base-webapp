@@ -5,11 +5,12 @@ object Build extends Build {
   import Settings._
   import Dependencies._
 
-  lazy val root = Project("base-webapp", file("."))
-    .aggregate(backend)
-    .settings(basicSettings: _*)
-    .settings(formatSettings: _*)
-    .settings(noPublishing: _*)
+  lazy val root = new Project("base-webapp", file(".")) with MITLicense {
+    def copyrightLine = "Copyright © 2014 Carlos Ferreyra (crypticmind@gmail.com)"
+  }.aggregate(backend)
+   .settings(basicSettings: _*)
+   .settings(formatSettings: _*)
+   .settings(noPublishing: _*)
 
   lazy val backend = Project("base-webapp-backend", file("backend"))
     .settings(basicSettings: _*)
