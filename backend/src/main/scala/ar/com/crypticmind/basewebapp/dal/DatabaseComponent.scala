@@ -61,7 +61,7 @@ trait DatabaseComponent { this: SettingsComponent ⇒
     }
 
     def checkDatabaseVersion() = Try(currentVersion) match {
-      case Success(Some(dbVersion)) if dbVersion.version == Version(settings.dbRequiredVersion) ⇒
+      case Success(Some(dbVersion)) if dbVersion.version == settings.dbRequiredVersion ⇒
       // Yay!
       case Success(Some(otherDbVersion)) ⇒
         throw new IllegalStateException(s"Database version mismatch: Expected ${settings.dbRequiredVersion}, actual ${otherDbVersion.version}")

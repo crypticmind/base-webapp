@@ -8,8 +8,9 @@ import ar.com.crypticmind.basewebapp.dal.DatabaseComponent.Version
 import java.io.{ FileOutputStream, File }
 import org.apache.commons.io.IOUtils
 import org.slf4j.LoggerFactory
+import ar.com.crypticmind.basewebapp.core.SettingsComponent
 
-trait DatabaseUpdateComponent { this: DatabaseComponent with TestDataSource ⇒
+trait DatabaseUpdateComponent { this: DatabaseComponent with TestDataSource with SettingsComponent ⇒
 
   private val log = LoggerFactory.getLogger(getClass)
 
@@ -38,7 +39,7 @@ trait DatabaseUpdateComponent { this: DatabaseComponent with TestDataSource ⇒
       DirectoryListing
         .listResources(path)
         .map(version ⇒ Version(version.replaceAllLiterally(".sql", "")))
-        .takeWhile(_ > currentVersion)
+        .filter(version => version > currentVersion && version <= settings.dbRequiredVersion)
         .sorted
 
     scriptVersions.foreach { scriptVersion ⇒
