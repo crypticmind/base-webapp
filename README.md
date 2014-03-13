@@ -8,7 +8,7 @@ Base spray + angularjs webapp meant as a boilerplate.
 ### Backend
 
 + HTTP server implemented using [spray](http://spray.io).
-+ Service component injection done using cake pattern.
++ Service component injection done using the [cake pattern](http://jonasboner.com/2008/10/06/real-world-scala-dependency-injection-di).
 + Data access layer implemented using [mapperdao](https://code.google.com/p/mapperdao).
 + No actors (only the minimum required by spray to bootstrap).
 
