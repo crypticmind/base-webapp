@@ -17,6 +17,7 @@ object Build extends Build {
     .settings(backendSettings: _*)
     .settings(revolverSettings: _*)
     .settings(testSettings: _*)
+    .settings(assemblySettings: _*)
     .settings(
       libraryDependencies ++=
         compile(akkaActor, akkaSlf4j, sprayCan, sprayRouting, sprayJson, mapperdao, c3p0, h2Driver, scalaReflect, slf4japi, logback, commons_lang, cacheable) ++

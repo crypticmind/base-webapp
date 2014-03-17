@@ -1,9 +1,10 @@
 import sbt._
 import Keys._
-import spray.revolver.RevolverPlugin.Revolver
 import sbtrelease.ReleasePlugin._
 import com.typesafe.sbt.SbtScalariform
 import com.typesafe.sbt.SbtScalariform.ScalariformKeys
+import sbtassembly.Plugin._
+import sbtassembly.Plugin.AssemblyKeys._
 
 object Settings {
 
@@ -27,8 +28,16 @@ object Settings {
       )
     ) ++ releaseSettings
 
-  import spray.revolver.RevolverPlugin.Revolver._
-  lazy val revolverSettings = Revolver.settings
+  lazy val assemblySettings = sbtassembly.Plugin.assemblySettings ++ Seq(
+    mainClass in assembly := Some("ar.com.crypticmind.basewebapp.Main"),
+    mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) => {
+      case "META-INF/spring.tooling" => MergeStrategy.concat
+      case x => old(x)
+      }
+    }
+  )
+
+  lazy val revolverSettings = spray.revolver.RevolverPlugin.Revolver.settings
 
   lazy val formatSettings = SbtScalariform.scalariformSettings ++ Seq(
     ScalariformKeys.preferences in Compile := formattingPreferences,
@@ -69,5 +78,5 @@ object Settings {
     name := "base-webapp-backend",
     mainClass in run := Some("ar.com.crypticmind.basewebapp.Main")
   )
-}
 
+}
