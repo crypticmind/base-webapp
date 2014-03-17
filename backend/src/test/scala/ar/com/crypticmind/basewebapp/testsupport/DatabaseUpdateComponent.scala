@@ -39,7 +39,7 @@ trait DatabaseUpdateComponent { this: DatabaseComponent with TestDataSource with
       DirectoryListing
         .listResources(path)
         .map(version ⇒ Version(version.replaceAllLiterally(".sql", "")))
-        .filter(version => version > currentVersion && version <= settings.dbRequiredVersion)
+        .filter(version ⇒ version > currentVersion && version <= settings.dbRequiredVersion)
         .sorted
 
     scriptVersions.foreach { scriptVersion ⇒

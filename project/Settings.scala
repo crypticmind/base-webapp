@@ -23,9 +23,8 @@ object Settings {
       "-deprecation",
       "-target:jvm-1.6",
       "-language:postfixOps",
-      "-language:implicitConversions",
-      "-Xlog-reflective-calls"
-    )
+      "-language:implicitConversions"
+      )
     ) ++ releaseSettings
 
   import spray.revolver.RevolverPlugin.Revolver._

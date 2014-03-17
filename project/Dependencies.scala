@@ -28,7 +28,7 @@ object Dependencies {
   val ant             = "org.apache.ant"            %   "ant"                   % "1.9.3"
   val commons_io      = "commons-io"                %   "commons-io"            % "2.4"
   val commons_lang    = "org.apache.commons"        %   "commons-lang3"         % "3.0"
-
+  val cacheable       = "com.github.cb372"          %%  "cacheable-ehcache"     % "0.1.1"
 
   def compile   (deps: ModuleID*): Seq[ModuleID] = deps map (_ % "compile")
   def provided  (deps: ModuleID*): Seq[ModuleID] = deps map (_ % "provided")

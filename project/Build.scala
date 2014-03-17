@@ -19,8 +19,8 @@ object Build extends Build {
     .settings(testSettings: _*)
     .settings(
       libraryDependencies ++=
-        compile(akkaActor, akkaSlf4j, sprayCan, sprayRouting, sprayJson, mapperdao, c3p0, h2Driver, scalaReflect, slf4japi, logback, commons_lang) ++
-        test(scalatest, akkaTestKit, mapperdao, c3p0, h2Driver, slf4japi, logback, ant, commons_io, commons_lang) ++
+        compile(akkaActor, akkaSlf4j, sprayCan, sprayRouting, sprayJson, mapperdao, c3p0, h2Driver, scalaReflect, slf4japi, logback, commons_lang, cacheable) ++
+        test(scalatest, akkaTestKit, mapperdao, c3p0, h2Driver, slf4japi, logback, ant, commons_io, commons_lang, cacheable) ++
         runtime(h2Driver)
     )
 
