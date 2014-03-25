@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html ng-app>
 <head lang="en">
     <meta charset="UTF-8">
     <title>Base Webapp</title>
+    <script src="js/angular.min.js"></script>
 </head>
 <body>
     <h1>Base Webapp</h1>
+    <input type="text" ng-model="test" placeholder="Your name here">
+    <hr>
+    <h3>Hello {{test}}</h3>
 </body>
 </html>
