@@ -6,7 +6,7 @@ object Build extends Build {
   import Dependencies._
 
   lazy val root = Project("base-webapp", file("."))
-    .aggregate(backend)
+    .aggregate(backend, frontend)
     .settings(basicSettings: _*)
     .settings(formatSettings: _*)
     .settings(noPublishing: _*)
@@ -17,13 +17,15 @@ object Build extends Build {
     .settings(backendSettings: _*)
     .settings(revolverSettings: _*)
     .settings(testSettings: _*)
-    .settings(assemblySettings: _*)
     .settings(
       libraryDependencies ++=
         compile(akkaActor, akkaSlf4j, sprayCan, sprayRouting, sprayJson, mapperdao, c3p0, h2Driver, scalaReflect, slf4japi, logback, commons_lang, cacheable) ++
         test(scalatest, akkaTestKit, mapperdao, c3p0, h2Driver, slf4japi, logback, ant, commons_io, commons_lang, cacheable) ++
         runtime(h2Driver)
     )
+    .dependsOn(frontend)
+
+  lazy val frontend = Project("base-webapp-frontend", file("frontend"))
 
   val noPublishing = Seq(publish := (), publishLocal := ())
 }

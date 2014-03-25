@@ -12,8 +12,8 @@ trait TestCore
     with DatabaseUpdateComponent
     with Core {
 
-  val system = ActorSystem(getClass.getSimpleName)
-  val settings = ServiceSettings(system)
+  val actorSystem = ActorSystem(getClass.getSimpleName)
+  val settings = ServiceSettings(actorSystem)
   val log = LoggerFactory.getLogger(getClass)
 
   updateDatabase()

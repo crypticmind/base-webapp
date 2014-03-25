@@ -2,7 +2,7 @@ package ar.com.crypticmind.basewebapp.core
 
 import akka.actor.{ Props, ActorSystem }
 import ar.com.crypticmind.basewebapp.httpserver.{ ServerManager, ServiceActor }
-import ar.com.crypticmind.basewebapp.httpserver.routes.{ ServiceStateRoutes, UserRoutes }
+import ar.com.crypticmind.basewebapp.httpserver.routes.{ WebAppRoutes, ServiceStateRoutes, UserRoutes }
 import ar.com.crypticmind.basewebapp.dal.DatabaseComponent
 
 trait Bootstrap {
@@ -18,8 +18,10 @@ trait Bootstrap {
       with DatabaseComponent
       with Core
       with UserRoutes
+      with WebAppRoutes
       with ServiceStateRoutes {
     val settings = Bootstrap.this.settings
+    val actorSystem = Bootstrap.this.system
   }
 
   // The manager that handles the lifecycle of the service actor.

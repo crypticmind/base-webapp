@@ -3,8 +3,6 @@ import Keys._
 import sbtrelease.ReleasePlugin._
 import com.typesafe.sbt.SbtScalariform
 import com.typesafe.sbt.SbtScalariform.ScalariformKeys
-import sbtassembly.Plugin._
-import sbtassembly.Plugin.AssemblyKeys._
 
 object Settings {
 
@@ -27,15 +25,6 @@ object Settings {
       "-language:implicitConversions"
       )
     ) ++ releaseSettings
-
-  lazy val assemblySettings = sbtassembly.Plugin.assemblySettings ++ Seq(
-    mainClass in assembly := Some("ar.com.crypticmind.basewebapp.Main"),
-    mergeStrategy in assembly <<= (mergeStrategy in assembly) { (old) => {
-      case "META-INF/spring.tooling" => MergeStrategy.concat
-      case x => old(x)
-      }
-    }
-  )
 
   lazy val revolverSettings = spray.revolver.RevolverPlugin.Revolver.settings
 

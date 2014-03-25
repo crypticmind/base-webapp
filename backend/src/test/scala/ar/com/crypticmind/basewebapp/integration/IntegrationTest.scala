@@ -6,7 +6,7 @@ import ar.com.crypticmind.basewebapp.testsupport.TestCore
 trait IntegrationTest extends TestCore with WordSpecLike with Matchers with BeforeAndAfterAll {
 
   override def afterAll() {
-    system.shutdown()
+    actorSystem.shutdown()
   }
 
 }
