@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="app">
 <head lang="en">
     <meta charset="UTF-8">
     <title>Base Webapp</title>
     <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <link rel="stylesheet" href="css/default.css">
 </head>
 <body>
-    <h1>Base Webapp</h1>
-    <input type="text" ng-model="test" placeholder="Your name here">
-    <hr>
-    <h3>Hello {{test}}</h3>
+    <div ng-view></div>
 </body>
 </html>

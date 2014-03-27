@@ -1,0 +1,12 @@
+<div ng-controller="UserListController">
+    Search: <input ng-model="query" />
+    <ul class="record-list">
+        <li ng-repeat="user in users | filter:query | orderBy:username" class="record-item">
+            <div class="record-field width-small" ng-bind="user.id"></div>
+            <div class="record-field width-medium" ng-bind="user.username"></div>
+            <div class="record-field width-small">
+                <a href="#/users/{{user.id}}">Edit</a>
+            </div>
+        </li>
+    </ul>
+</div>

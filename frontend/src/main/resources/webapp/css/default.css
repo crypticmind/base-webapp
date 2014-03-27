@@ -1,0 +1,16 @@
+
+.record-list {
+    list-style: none;
+}
+
+.record-field {
+    display: inline-block;
+}
+
+.record-field.width-small {
+    width: 40px;
+}
+
+.record-field.width-medium {
+    width: 40px;
+}
