@@ -1,0 +1,16 @@
+{
+    "name": "base-webapp-frontend",
+    "private": true,
+    "version": "0.0.0",
+    "description": "Base spray + angularjs webapp meant as a boilerplate",
+    "repository": "https://github.com/crypticmind/base-webapp",
+    "license": "MIT",
+    "devDependencies": {
+        "karma": "~0.10",
+        "protractor": "~0.17.0",
+        "http-server": "^0.6.1",
+        "shelljs": "^0.2.6"
+    },
+    "scripts": {
+    }
+}
