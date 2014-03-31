@@ -5,4 +5,6 @@
 /backend/target/
 /project/target/
 /project/project/
-
+/frontend/bower_components/
+/frontend/node_modules/
+npm-debug.log

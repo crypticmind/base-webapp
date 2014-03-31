@@ -1,0 +1,14 @@
+{
+    "name": "base-webapp-frontend",
+    "description": "Base spray + angularjs webapp meant as a boilerplate",
+    "version": "0.0.0",
+    "homepage": "https://github.com/crypticmind/base-webapp",
+    "license": "MIT",
+    "private": true,
+    "dependencies": {
+        "angular": "1.2.x",
+        "angular-route": "1.2.x",
+        "angular-loader": "1.2.x",
+        "angular-mocks": "~1.2.15"
+    }
+}
