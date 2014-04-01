@@ -12,7 +12,7 @@ app.config([
                 templateUrl: 'partials/user-list.html',
                 controller: 'UserListController'
             })
-            .when('/users/:userId', {
+            .when('/users/:username', {
                 templateUrl: 'partials/user-detail.html',
                 controller: 'UserDetailController'
             })
